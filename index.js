@@ -17,7 +17,7 @@ passport.use(
     {
       clientID: process.env.CLIENT_ID,
       clientSecret: process.env.CLIENT_SECRET,
-      callbackURL: "http://localhost:3000/posts"
+      callbackURL: "http://localhost:3000/posts",
     },
     (accessToken, refreshToken, profile, done) => {
       //in future use profile with postgres
@@ -50,7 +50,6 @@ app.get(
   passport.authenticate("google", { scope: ["profile", "email"] })
 );
 
-//route is call /courses for now bc that is what is set in cloud console
 app.get(
   "/posts",
   passport.authenticate("google", { failureRedirect: "/" }),
